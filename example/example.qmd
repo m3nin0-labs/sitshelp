@@ -1,0 +1,22 @@
+---
+title: "SITS R Package"
+sitshelp-api-url: "http://127.0.0.1:8000/"
+---
+
+## Overview
+
+An end-to-end toolkit for land use and land cover classificationusing big Earth observation data. Builds satellite image data cubes from cloud collections.Supports visualization methods for images and time series and smoothing filters for dealing with noisy time series. Enables merging of multi-source imagery (SAR, optical, DEM).Includes functions for quality assessment of training samples using self-organized maps and  to reduce training samples imbalance. Provides machine learning algorithms including support vector machines, random forests, extreme gradient boosting, multi-layer perceptrons,temporal convolution neural networks, and temporal attention encoders.Performs efficient classification of big Earth observation data cubes and includes functions for post-classification smoothing based on Bayesian inference.Enables best practices for estimating area and assessing accuracy of land change. Includes object-based spatio-temporal segmentation for space-time OBIA.
+
+## Getting Started
+
+To install `sits` from CRAN:
+
+```r
+install.packages("sits")
+```
+
+To load the package:
+
+```r
+library(sits)
+```
