@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SITSHelp Widget - Example sitsbook page</title>
+    <style>
+      body {
+        font-family: Georgia, serif;
+        max-width: 720px;
+        margin: 0 auto;
+        padding: 48px 24px 160px;
+        line-height: 1.7;
+        color: #333;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Example sitsbook page</h1>
+    
+    <p>
+      This page simulates a documentation page hosting the SITS Assistant
+      widget. Use it with <code>npm run dev</code>. The production build is a
+      Vite library build and ignores this file.
+    </p>
+
+    <p>
+      Satellite image time series analysis provides a new paradigm for land
+      use and land cover classification. The <code>sits</code> R package
+      supports the full cycle of analysis: data cube creation, time series
+      retrieval, machine learning classification, and validation.
+    </p>
+
+    <script>
+      window.__SITSHELP_CONFIG__ = { apiUrl: "http://127.0.0.1:8000" }
+    </script>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

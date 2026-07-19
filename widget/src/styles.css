@@ -1,0 +1,691 @@
+/*
+ * This file is part of SITSHelp.
+ * Copyright (C) 2026 SITS Developers.
+ *
+ * SITSHelp is free software; you can redistribute it and/or modify it
+ * under the terms of the MIT License; see LICENSE file for more details.
+ */
+
+/* Tailwind v4 - no preflight */
+/* `important` flag ensures our utilities beat Bootstrap unlayered styles */
+@import "tailwindcss/theme";
+@import "tailwindcss/utilities" important;
+
+/* Tailwind should scan streamdown source for class names */
+@source "../node_modules/streamdown/dist";
+
+/* Theme: map shadcn + SITSHelp colors to Tailwind v4 */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Widget-specific colors */
+  --color-accent-blue: var(--sitshelp-accent);
+  --color-accent-blue-hover: var(--sitshelp-accent-hover);
+  --color-accent-light: var(--sitshelp-accent-light);
+  --color-input-bg: var(--sitshelp-input-bg);
+
+  /* Radis */
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+/* CSS isolation: reset all inherited/cascading Bootstrap styles */
+#sitshelp-root,
+#sitshelp-root *:not(svg, svg *),
+#sitshelp-root *::before,
+#sitshelp-root *::after {
+  all: revert;
+  box-sizing: border-box;
+}
+
+/* Root variables */
+#sitshelp-root {
+  /* shadcn theme variables - streamdown depends on these */
+  --radius: 0.5rem;
+  --background: #ffffff;
+  --foreground: #1a1a2e;
+  --card: #ffffff;
+  --card-foreground: #1a1a2e;
+  --popover: #ffffff;
+  --popover-foreground: #1a1a2e;
+  --primary: #1a1a2e;
+  --primary-foreground: #fafafa;
+  --secondary: #f7f8fa;
+  --secondary-foreground: #1a1a2e;
+  --muted: #f5f5f5;
+  --muted-foreground: #6b7280;
+  --accent: #f5f5f5;
+  --accent-foreground: #1a1a2e;
+  --destructive: #dc2626;
+  --border: #e5e7eb;
+  --input: #e5e7eb;
+  --ring: #9ca3af;
+  --sidebar: #f7f8fa;
+  --sidebar-foreground: #1a1a2e;
+  --sidebar-primary: #1a1a2e;
+  --sidebar-primary-foreground: #fafafa;
+  --sidebar-accent: #f5f5f5;
+  --sidebar-accent-foreground: #1a1a2e;
+  --sidebar-border: #e5e7eb;
+  --sidebar-ring: #9ca3af;
+
+  /* Widget-specific variables */
+  --sitshelp-accent: #4a90d9;
+  --sitshelp-accent-hover: #3a7bc8;
+  --sitshelp-accent-light: #eef4ff;
+  --sitshelp-input-bg: #eef3fb;
+  --sitshelp-focus-ring: color-mix(in srgb, var(--sitshelp-accent) 12%, transparent);
+
+  /* Source badge colors (by source_type) */
+  --sitshelp-badge-documentation: #4a90d9;
+  --sitshelp-badge-reference: #7c6bc4;
+  --sitshelp-badge-article: #3daa8d;
+  --sitshelp-badge-satellite: #d4943a;
+  --sitshelp-badge-collection: #3a9db8;
+  --sitshelp-badge-fallback: #6b7280;
+
+  /* Typography */
+  --sitshelp-mono:
+    ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--foreground);
+}
+
+/* Markdown prose (nested selectors - can't be Tailwind utilities) */
+#sitshelp-root .sitshelp-prose {
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--foreground);
+}
+
+#sitshelp-root .sitshelp-prose p {
+  margin: 0 0 10px;
+}
+#sitshelp-root .sitshelp-prose p:last-child {
+  margin-bottom: 0;
+}
+
+#sitshelp-root .sitshelp-prose h1 {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 18px 0 8px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--border);
+  color: var(--foreground);
+}
+
+#sitshelp-root .sitshelp-prose h2 {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 14px 0 6px;
+  color: var(--foreground);
+}
+
+#sitshelp-root .sitshelp-prose h3 {
+  font-size: 15px;
+  font-weight: 600;
+  margin: 12px 0 4px;
+  color: var(--foreground);
+}
+
+#sitshelp-root .sitshelp-prose h1:first-child,
+#sitshelp-root .sitshelp-prose h2:first-child,
+#sitshelp-root .sitshelp-prose h3:first-child {
+  margin-top: 0;
+}
+
+#sitshelp-root .sitshelp-prose ul,
+#sitshelp-root .sitshelp-prose ol {
+  margin: 8px 0;
+  padding-left: 20px;
+}
+
+#sitshelp-root .sitshelp-prose li {
+  margin: 2px 0;
+}
+
+/* Inline code: streamdown styles it with Tailwind utilities that compile as
+   `!important` (our build `important` flag), so every property here needs
+   `!important` too.
+   
+  Sized to fit the 14px/1.65 prose line box without stretching it. */
+#sitshelp-root .sitshelp-prose code:not([data-block]):not(pre code),
+#sitshelp-root .sitshelp-prose [data-streamdown="inline-code"] {
+  background: rgba(0, 0, 0, 0.06) !important;
+  border: none !important;
+  border-radius: 4px !important;
+  padding: 1px 4px !important;
+  font-size: 12px !important;
+  line-height: 1.4 !important;
+  font-family: var(--sitshelp-mono) !important;
+}
+
+/* Links: reset to plain accent-colored text.
+
+  `!important` beats streamdown own link utilities (`!important` via our Tailwind build) 
+  and Quarto styles leaking through `all: revert`.
+  
+  A link is either `<a>` or, with link-safety on, a `<button data-streamdown="link">`
+  
+  Target both forms here. */
+#sitshelp-root .sitshelp-prose a,
+#sitshelp-root .sitshelp-prose [data-streamdown="link"] {
+  color: var(--sitshelp-accent) !important;
+  text-decoration: none !important;
+  border: none !important;
+  background: transparent !important;
+  padding: 0 !important;
+  font: inherit !important;
+  cursor: pointer;
+}
+
+#sitshelp-root .sitshelp-prose a:hover,
+#sitshelp-root .sitshelp-prose [data-streamdown="link"]:hover {
+  text-decoration: underline !important;
+}
+
+/* Citation chips: [S1] markers linked to their source (remark-citations).
+  The link rule above forces `font: inherit !important`.
+  
+  Matching a `.sitshelp-cite` (element + class) is more specific, so the chip
+  own font/size win the tie even though both are `!important`.
+*/
+#sitshelp-root .sitshelp-prose a.sitshelp-cite,
+#sitshelp-root .sitshelp-prose .sitshelp-cite {
+  display: inline-block;
+  font-size: 10px !important;
+  font-weight: 600 !important;
+  line-height: 15px !important;
+  font-family: inherit !important;
+  vertical-align: 2px;
+  color: var(--sitshelp-accent) !important;
+  background: var(--sitshelp-accent-light) !important;
+  border-radius: 4px !important;
+  padding: 0 4px !important;
+  margin: 0 1px;
+  text-decoration: none !important;
+  transition:
+    background 0.15s,
+    color 0.15s;
+}
+
+#sitshelp-root .sitshelp-prose a.sitshelp-cite:hover,
+#sitshelp-root .sitshelp-prose .sitshelp-cite:hover {
+  background: var(--sitshelp-accent) !important;
+  color: white !important;
+  text-decoration: none !important;
+}
+
+#sitshelp-root .sitshelp-prose strong {
+  font-weight: 600;
+}
+
+#sitshelp-root .sitshelp-prose blockquote {
+  border-left: 3px solid var(--sitshelp-accent);
+  padding-left: 12px;
+  color: var(--muted-foreground);
+  margin: 8px 0;
+}
+
+#sitshelp-root .sitshelp-prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 10px 0;
+  font-size: 13px;
+}
+
+#sitshelp-root .sitshelp-prose th,
+#sitshelp-root .sitshelp-prose td {
+  border: 1px solid var(--border);
+  padding: 6px 10px;
+  text-align: left;
+}
+
+#sitshelp-root .sitshelp-prose th {
+  background: var(--accent);
+  font-weight: 600;
+}
+
+/* Streamdown frames a table in two nested boxes. Flatten to one: the wrapper
+   keeps the border, rounded corners and outer margin.
+   
+   Padding/gap go to 0 so the table sits flush (a table margin would show as a white band inside).
+   `overflow:hidden` clips to the rounded corners.
+
+   `!important` because our Tailwind build makes streamdown own utilities `!important`. */
+#sitshelp-root .sitshelp-prose [data-streamdown="table-wrapper"] {
+  margin: 10px 0 !important;
+  padding: 0 !important;
+  gap: 0 !important;
+  border-radius: 10px !important;
+  background: var(--background) !important;
+  overflow: hidden;
+}
+
+#sitshelp-root .sitshelp-prose [data-streamdown="table-wrapper"] > div {
+  border: none !important;
+  border-radius: 0 !important;
+}
+
+#sitshelp-root .sitshelp-prose [data-streamdown="table-wrapper"] table {
+  margin: 0 !important;
+}
+
+/* The wrapper border is the single outer frame: cells only draw the
+   inner grid (no doubled outer edges) */
+#sitshelp-root .sitshelp-prose [data-streamdown="table-wrapper"] th,
+#sitshelp-root .sitshelp-prose [data-streamdown="table-wrapper"] td {
+  border: none;
+  border-bottom: 1px solid var(--border);
+  border-left: 1px solid var(--border);
+}
+#sitshelp-root .sitshelp-prose [data-streamdown="table-wrapper"] th:first-child,
+#sitshelp-root .sitshelp-prose [data-streamdown="table-wrapper"] td:first-child {
+  border-left: none;
+}
+#sitshelp-root .sitshelp-prose [data-streamdown="table-wrapper"] tr:last-child td {
+  border-bottom: none;
+}
+
+/* KaTeX math */
+#sitshelp-root .sitshelp-prose .katex-display {
+  margin: 12px 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+#sitshelp-root .sitshelp-prose .katex {
+  font-size: 1em;
+}
+
+/* Mermaid diagrams */
+#sitshelp-root .sitshelp-prose .mermaid,
+#sitshelp-root .sitshelp-prose [data-mermaid] {
+  margin: 12px 0;
+  background: var(--background);
+  border-radius: 8px;
+  padding: 16px;
+  overflow-x: auto;
+  text-align: center;
+}
+
+/* Force light theme on code blocks (prevent Shiki dark theme) */
+#sitshelp-root .sitshelp-prose pre {
+  color-scheme: light;
+}
+
+#sitshelp-root .sitshelp-prose .shiki span.shiki-dark {
+  display: none !important;
+}
+
+/* Streamdown frames code in two nested boxes (code-block + code-block-body).
+   Strip the outer box to its shell so only one slim frame shows. The inner
+   body keeps the padding. `!important` because the Tailwind build compiles with
+   the `important` flag, so streamdown own utilities are `!important` and a
+   plain override wouldn't win. */
+#sitshelp-root .sitshelp-prose [data-streamdown="code-block"] {
+  margin: 10px 0 !important;
+  padding: 0 !important;
+  gap: 0 !important;
+  border-radius: 10px !important;
+  background: var(--background) !important;
+  overflow: hidden;
+}
+
+#sitshelp-root .sitshelp-prose [data-streamdown="code-block-header"] {
+  height: 32px !important;
+  padding: 0 8px 0 12px !important;
+  background: var(--secondary);
+  border-bottom: 1px solid var(--border);
+  font-family: var(--sitshelp-mono) !important;
+}
+
+#sitshelp-root .sitshelp-prose [data-streamdown="code-block-body"] {
+  border: none !important;
+  border-radius: 0 !important;
+  padding: 12px 14px !important;
+  font-family: var(--sitshelp-mono) !important;
+  font-size: 12.5px !important;
+  line-height: 1.6 !important;
+}
+
+/* Shiki wraps each code line in a direct-child <span>. With line numbers on,
+   streamdown gives those spans `display:block`. With line numbers off (our case)
+   it doesn't. So force it here so each line renders on its own row. */
+#sitshelp-root .sitshelp-prose [data-streamdown="code-block-body"] code > span {
+  display: block;
+}
+
+/* Actions float over the header row instead of the code area */
+#sitshelp-root
+  .sitshelp-prose
+  [data-streamdown="code-block"]
+  > div:has(> [data-streamdown="code-block-actions"]) {
+  height: 32px !important;
+  margin-top: -32px !important;
+  padding: 0 4px !important;
+}
+
+#sitshelp-root .sitshelp-prose [data-streamdown="code-block-actions"] {
+  border: none !important;
+  background: transparent !important;
+  padding: 0 !important;
+}
+
+#sitshelp-root .sitshelp-prose [data-streamdown="code-block-download-button"] {
+  display: none;
+}
+
+/* Code copy button - same chip style as the message copy button */
+#sitshelp-root .sitshelp-prose [data-streamdown="code-block-copy-button"] {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  padding: 0 !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 6px !important;
+  background: var(--background) !important;
+  color: var(--muted-foreground) !important;
+  cursor: pointer;
+  transition:
+    background 0.15s,
+    color 0.15s;
+}
+#sitshelp-root .sitshelp-prose [data-streamdown="code-block-copy-button"]:hover {
+  background: var(--accent) !important;
+  color: var(--foreground) !important;
+}
+
+/* Scrollbar */
+#sitshelp-root .sitshelp-thread-viewport::-webkit-scrollbar {
+  width: 4px;
+}
+
+#sitshelp-root .sitshelp-thread-viewport::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+#sitshelp-root .sitshelp-thread-viewport::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 2px;
+}
+
+/* Typing dots animation */
+#sitshelp-root .sitshelp-typing-dots {
+  display: inline-flex;
+  gap: 4px;
+  align-items: center;
+  padding: 4px 0;
+}
+
+#sitshelp-root .sitshelp-typing-dots span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--muted-foreground);
+  animation: sitshelp-bounce 1.2s ease-in-out infinite;
+}
+
+#sitshelp-root .sitshelp-typing-dots span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+#sitshelp-root .sitshelp-typing-dots span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+/* 
+  Widget component classes
+*/
+
+/* Send button (used in thread composer + floating bar) */
+#sitshelp-root .sitshelp-send-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  border: none;
+  background: var(--sitshelp-accent);
+  color: white;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition:
+    background 0.15s,
+    opacity 0.15s;
+}
+#sitshelp-root .sitshelp-send-btn:hover {
+  background: var(--sitshelp-accent-hover);
+}
+#sitshelp-root .sitshelp-send-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Header icon button */
+#sitshelp-root .sitshelp-header-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  border: none;
+  background: transparent;
+  color: var(--muted-foreground);
+  cursor: pointer;
+  padding: 0;
+  transition:
+    background 0.15s,
+    color 0.15s;
+}
+#sitshelp-root .sitshelp-header-btn:hover {
+  background: var(--accent);
+  color: var(--foreground);
+}
+
+/* Copy button */
+#sitshelp-root .sitshelp-copy-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--background);
+  color: var(--muted-foreground);
+  cursor: pointer;
+  padding: 0;
+  transition:
+    background 0.15s,
+    color 0.15s;
+}
+#sitshelp-root .sitshelp-copy-btn:hover {
+  background: var(--accent);
+  color: var(--foreground);
+}
+
+/* Agent steps card (grouped tool calls, one card per run) */
+#sitshelp-root .sitshelp-steps-card {
+  margin: 2px 0 6px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--secondary);
+  overflow: hidden;
+}
+
+#sitshelp-root .sitshelp-steps-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 9px 14px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--foreground);
+  text-align: left;
+}
+
+#sitshelp-root .sitshelp-steps-count {
+  font-weight: 400;
+  color: var(--muted-foreground);
+}
+
+#sitshelp-root .sitshelp-steps-body {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 0 14px 11px;
+}
+
+#sitshelp-root .sitshelp-steps-row {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  font-size: 12.5px;
+  color: var(--muted-foreground);
+}
+
+#sitshelp-root .sitshelp-steps-num {
+  flex-shrink: 0;
+  font-family: "JetBrains Mono", "Fira Code", Consolas, monospace;
+  font-size: 11px;
+  color: var(--sitshelp-accent);
+}
+
+/* Shared composer frame (thread composer + floating bar) */
+#sitshelp-root .sitshelp-composer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--sitshelp-input-bg);
+  border: 1px solid transparent;
+  border-radius: 14px;
+  padding: 10px 10px 10px 16px;
+  transition:
+    border-color 0.15s,
+    box-shadow 0.15s;
+}
+#sitshelp-root .sitshelp-composer:focus-within {
+  border-color: var(--sitshelp-accent);
+  box-shadow: 0 0 0 3px var(--sitshelp-focus-ring);
+}
+
+/* Floating variant keeps its drop shadow when focused */
+#sitshelp-root .sitshelp-composer-floating {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+#sitshelp-root .sitshelp-composer-floating:focus-within {
+  box-shadow:
+    0 4px 20px rgba(0, 0, 0, 0.1),
+    0 0 0 3px var(--sitshelp-focus-ring);
+}
+
+/* Keyboard hint below composers */
+#sitshelp-root .sitshelp-kbd-hint {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  color: var(--muted-foreground);
+}
+
+#sitshelp-root .sitshelp-kbd-hint kbd {
+  font-family: inherit;
+  font-size: 10px;
+  line-height: 1;
+  padding: 2px 5px 3px;
+  border: 1px solid var(--border);
+  border-bottom-width: 2px;
+  border-radius: 4px;
+  background: var(--secondary);
+  color: var(--muted-foreground);
+}
+
+/* Section label in the past-chats list (Today / Older) */
+#sitshelp-root .sitshelp-chat-section-label {
+  padding: 14px 16px 4px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+
+/* Source badge */
+#sitshelp-root .sitshelp-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 1px 6px;
+  border-radius: 10px;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: white;
+  flex-shrink: 0;
+}
+
+/* Source card */
+#sitshelp-root .sitshelp-source-card {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  border-radius: 6px;
+  text-decoration: none;
+  color: var(--foreground);
+  transition: background 0.15s;
+}
+#sitshelp-root .sitshelp-source-card:hover {
+  background: var(--accent);
+}
+
+/* Keyframes */
+@keyframes sitshelp-bounce {
+  0%,
+  80%,
+  100% {
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
+  40% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
