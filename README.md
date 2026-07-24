@@ -1,4 +1,4 @@
-## sitshelp <img src=".github/logo.svg" align="right" height="160" alt="dragoman logo" />
+## sitshelp <img src=".github/logo.svg" align="right" height="220" alt="sitshelp logo" />
 
 AI Assistant to support users on the [sitsbook](https://e-sensing.github.io/sitsbook/) page. Built of top of `sitsrag`.
 
