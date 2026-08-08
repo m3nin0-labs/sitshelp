@@ -129,7 +129,7 @@ export function FloatingBar({ onSubmit, visible, showContinue, onContinue }: Flo
         </button>
       </div>
 
-      <div className="flex items-center gap-3">
+      <div className="sitshelp-hint-bar">
         <div className="sitshelp-kbd-hint">
           <kbd>Enter</kbd>
           <span>to send</span>

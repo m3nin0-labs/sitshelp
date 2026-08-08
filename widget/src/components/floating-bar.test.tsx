@@ -17,4 +17,16 @@ describe("FloatingBar", () => {
 
     expect(screen.getByLabelText("Send message")).toBeInTheDocument()
   })
+
+  it("backs the hint row so it stays readable over page content", () => {
+    const { container } = render(
+      <FloatingBar onSubmit={vi.fn()} visible showContinue onContinue={vi.fn()} />
+    )
+
+    const hintBar = container.querySelector(".sitshelp-hint-bar")
+
+    expect(hintBar).not.toBeNull()
+    expect(hintBar).toContainElement(container.querySelector(".sitshelp-kbd-hint"))
+    expect(hintBar).toContainElement(screen.getByText(/Continue conversation/))
+  })
 })

@@ -11,8 +11,10 @@ import react from "@vitejs/plugin-react"
 import tailwindcss from "@tailwindcss/vite"
 import { resolve } from "path"
 
+import { scopeCssPlugin } from "./src/build/scope-css"
+
 export default defineConfig({
-  plugins: [react(), tailwindcss()],
+  plugins: [react(), tailwindcss(), scopeCssPlugin()],
   resolve: {
     dedupe: ["@ag-ui/client", "@ag-ui/core"],
   },
